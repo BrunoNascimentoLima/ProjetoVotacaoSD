@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"   >
+
+<ui:composition template="detalhe.xhtml">
+	<ui:define name="conteudo">
+	<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" value="${candidatoMB.mensagem}" />
+	<p:panel header="Urna Eletrônica">
+	<h:form id="formCandidato">
+	<h:outputText value="Digite o número do candidato: " />  
+      <p:inputMask value="${candidatoMB.candidato.numero}"  mask="99" required="true"/>        
+	
+
+	<p:commandButton value="Buscar Candidato" action="${candidatoMB.buscarCandidato()}"
+	icon="ui-icon-search" />
+	
+
+	
+	
+	<p:fieldset legend="Candidato" >  
+      
+        
+        <p:graphicImage value="/images/${candidatoMB.candidato.nome}.jpg" rendered="${not empty candidatoMB.candidato.nome}"/>  
+           <h:panelGrid columns="2"> 
+            <h:outputText value="Nome:"/>
+            <h:outputText value="${candidatoMB.candidato.nome}"/>  
+            <h:outputText value="Partido:"/>
+            <h:outputText value="${candidatoMB.candidato.partido}"/>     
+        </h:panelGrid>
+        <h:panelGroup>
+        <p:commandButton value="Corrigir" action="${candidatoMB.corrigir()}" update="formCandidato"/>
+        </h:panelGroup>
+        <h:panelGroup>
+        <p:commandButton value="Confirmar" action="${candidatoMB.confirmar()}" update="formCandidato"/>
+        </h:panelGroup>
+      
+        </p:fieldset>
+         </h:form>
+         <h:form>
+         <p:separator/>
+         <p:separator/>
+         <p:commandButton value="Voltar" action="${candidatoMB.voltar()}" />
+         </h:form>
+    </p:panel>      
+	</ui:define>
+	
+	
+	</ui:composition>
+	
+</html>

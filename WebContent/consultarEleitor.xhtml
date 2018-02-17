@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="detalhe.xhtml">
+	<ui:define name="conteudo">
+		<p:messages id="messages" showDetail="true" autoUpdate="true"
+			closable="true" value="${eleitorMB.mensagem}" />
+		<p:panel header="Consulta de Eleitores">
+			<h:form id="formEleitor">
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Número do título:"/>
+				<p:inputMask value="${eleitorMB.eleitor.titulo}" mask="9999-9999-9999"/>
+				<h:panelGroup>
+					<p:commandButton id="pesquisar" value="Pesquisar"
+						action="${eleitorMB.pesquisar()}" update="formEleitor"
+						icon="ui-icon-search" />
+				</h:panelGroup>
+			 	
+				<h:panelGroup>
+					<p:commandButton id="pesquisarTodos" value="Pesquisar Todos"
+						action="${eleitorMB.pesquisarTodos()}" 
+						update="formEleitor" icon="ui-icon-search" />
+				</h:panelGroup>
+           </h:panelGrid>
+           </h:form>
+			
+			<h:form>
+			<h:panelGroup>
+					<p:commandButton  value="Voltar ao menu"
+						action="${eleitorMB.voltarMenu()}"  />
+				</h:panelGroup>
+			</h:form>
+			<p:dataTable value="${eleitorMB.eleitores}" var="e" border="2"
+				rendered="${not empty eleitorMB.eleitores}">
+				<p:column>${e.id}
+         	<f:facet name="header">ID</f:facet>
+         	</p:column>
+			<p:column>${e.nome}
+         	<f:facet name="header">Nome eleitor</f:facet>
+         	</p:column>
+         	<p:column>${e.titulo}
+         	<f:facet name="header">Número Título</f:facet>
+			</p:column>
+			</p:dataTable>
+			</p:panel>
+			
+	</ui:define>
+</ui:composition>
+
+</html>

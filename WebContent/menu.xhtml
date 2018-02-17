@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="detalhe.xhtml">
+	<ui:define name="conteudo">
+		<p:messages id="messages" showDetail="true" autoUpdate="true"
+			closable="true" value="${eleitorMB.mensagem}" />
+
+		<p:panel header="Menu do Eleitor">
+			<p:growl id="growl" showDetail="true" />
+			<h:form>
+				<p:fieldset legend="Acesse uma das opções:" toggleable="false"
+					toggleSpeed="500">
+					<p:ajax event="toggle" />
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:commandLink action="${eleitorMB.acessarUrna()}">
+							<h:outputText value="Acessar a urna para voto" />
+						</p:commandLink>
+
+						<p:commandLink action="${candidatoMB.acessarResultado()}">
+							<h:outputText value="Acessar o resultado parcial" />
+						</p:commandLink>
+
+
+					</h:panelGrid>
+
+				</p:fieldset>
+			</h:form>
+			<h:form>
+				<h:panelGroup>
+					<p:commandButton value="Sair da área de Eleitor"
+						action="${eleitorMB.sair()}" />
+				</h:panelGroup>
+			</h:form>
+		</p:panel>
+
+	</ui:define>
+</ui:composition>
+</html>

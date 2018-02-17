@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="detalhe.xhtml">
+	<ui:define name="conteudo">
+		<h:form>
+			<p:panel header="Página Principal">
+				<p:growl id="growl" showDetail="true" />
+
+				<p:fieldset legend="Voto Eletrônico" toggleable="false"
+					toggleSpeed="500">
+					<p:ajax event="toggle" update="growl" />
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:graphicImage value="/images/urna.jpg" />
+						<h:outputText
+							value="    A VOTESYS é um serviço de sistema de voto eletrônico distribuído, que permite que um eleitor
+                                  cadastrado no TJE, vote em seu candidato através do título eleitoral.O candidato ainda poderá ver o resultado
+                                  da eleição em nosso sistema.
+                                        O sistema Votesys tem a finalidade de trazer aos eleitores comodidade,praticidade e simplicidade, de modo que,
+                                  estes possam realizar seu voto sem precisar se deslocar até a urna eletrônica que está registrado.
+                                        É um método inovador que foi criado com o propósito de garantir a escolha do candidato de forma eficaz, 
+                                  pois ao votar pela web o eleitor pode pesquisar sobre seu candidato com mais tranquilidade e saber se estará fazendo a coisa certa." />
+					</h:panelGrid>
+				</p:fieldset>
+
+				<p:separator />
+				<p:fieldset legend="Acesse:" toggleable="false" toggleSpeed="500">
+					<p:ajax event="toggle" />
+					<h:panelGrid columns="2" cellpadding="10">
+					<li><h2>	<p:commandLink action="${eleitorMB.acessarMenu()}">
+							<h:outputText value="Acesse aqui a área do Eleitor" />
+						</p:commandLink></h2></li>
+						<li><p:commandLink action="${funcionarioMB.acessarMenu()}">
+							<h:outputText value="Acesse aqui a área do Funcionário" />
+						</p:commandLink></li>
+						
+						<h:form>
+				
+			</h:form>
+					</h:panelGrid>
+				</p:fieldset>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

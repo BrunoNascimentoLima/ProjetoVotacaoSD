@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="detalhe.xhtml">
+	<ui:define name="conteudo">
+		<p:panel header="Cadastro Candidato">
+			<h:form id="formCandidato">
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" value="${candidatoMB.mensagem}" />
+
+				<h:panelGrid columns="3">
+					<h:outputLabel value="Nome Candidato:*" />
+					<p:inputText id="nome" value="${candidatoMB.candidato.nome}"
+						required="true" label="Nome Completo" />
+					<p:message id="nomeMessage" for="nome" autoUpdate="true" />
+
+					<h:outputLabel value="Sigla Partido:*" />
+					<p:inputText id="partido" value="${candidatoMB.candidato.partido}"
+						 required="true" label="Partido" />
+					<p:message id="partidoMessage" for="partido" autoUpdate="true" />
+
+                    <h:outputLabel value="Número Candidato:*" />
+					<p:inputMask id="numero" value="${candidatoMB.candidato.numero}"
+						mask="99" required="true" label="Número Candidato" />
+					<p:message id="numeroMessage" for="numero" autoUpdate="true" />
+                    
+				</h:panelGrid>
+
+
+				<h:panelGrid columns="1">
+					<p:commandButton id="cadastrar" value="Cadastrar"
+						icon="ui-icon-disk" action="${candidatoMB.cadastrarCandidato()}"
+						update="formCandidato" />
+				</h:panelGrid>
+			</h:form>
+			<p:separator />
+			<h:form id="cancela">
+				<h:panelGrid columns="1">
+
+					<p:commandButton id="cancelar" value="Cancelar"
+						action="${candidatoMB.cancelar()}" />
+				</h:panelGrid>
+			</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>
+</html>
